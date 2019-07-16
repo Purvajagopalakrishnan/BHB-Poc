@@ -1,0 +1,273 @@
+<style>
+        .my-drop-zone {
+            border: dotted 3px lightgray;
+        }
+    
+    
+        html, body {
+            height: 100%;
+        }
+    </style>
+    <dialog mat-dialog aria-label="Upload A File">
+    
+            <a href="" data-toggle="modal" data-backdrop="false" data-target="#nameSelection" id="customMarkerSetName"></a>
+            <div class="modal fade" id="nameSelection">
+                <div class="modal-dialog" role="document" data-backdrop="static">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="mat-title card-title-style">Enter Custom Marker Name</h1>
+                        </div>
+                        <div class="modal-body">
+                            <label class="col-lg-2 control-label">Name* :</label>
+                            <input type="text" id="customMarkerFileName" class="form-control" [(ngModel)]="customMarkerFileName" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary green-button" (click)="cancelModal()">Cancel</button>
+                            <button type="button" class="btn btn-primary green-button" (click)="openFileDailog()">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <form ng-cloak id="datasetDialog">
+    
+                <mat-toolbar>
+                    <div class="mat-toolbar-tools">
+                        <h2>{{OnboardingTitle}}</h2>
+                        <span flex></span>
+                        <button mat-button class="mat-icon-button" (click)="closeModal()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </mat-toolbar>
+    
+                <mat-dialog-content ng-cloak>
+                    <div class="mat-dialog-content">
+                        <div class="container">
+                            <div class="row">
+    
+                                <!--left part of page-->
+                                <!-- select dataset-->
+                                <div class="col-md-3">
+                                    <mat-card class="mat-theme-watch">
+                                        <!-- <md-card-title-text> -->
+                                            <h1 class="mat-title card-title-style">Existing Datasets</h1>
+                                        <!-- </md-card-title-text> -->
+                                        </mat-card>
+                                        <!-- <div>
+                                            <select class="form-control col-xs-12" disabled="isUploading || IsDataSetLoading || IsFileImporting" change="getDataset()" [(ngModel)]="datasets.selected" options="x.Name for x in datasets"></select>
+                                            <span *ngIf="IsDataSetLoading">Loading datasets...</span>
+                                        </div>
+                                    </mat-card>
+                                    <mat-card class="mat-theme-watch">
+                                        <div class="row" align="center">
+                                            <button class="btn btn-primary mat-raised small-green-button" disabled="isUploading">
+                                                   
+                                                Create
+                                            </button>
+                                            <button class="btn btn-primary md-raised  small-green-button" disabled="!datasets.selected || isUploading">
+                                                    
+                                                Rename
+                                            </button>
+                                        </div>
+                                    </mat-card>
+                                    <mat-card class="mat-theme-watch">
+    
+                                        <!--download templates and instructions-->
+                                        <!-- <div>
+                                            <h1 class="mat-title card-title-style">Instructions</h1>
+                                            <button mat-button (click)="downloadTemplate('instructions')" class="mat-raised col-xs-11"><span class="glyphicon glyphicon-download-alt"></span> Instructions</button>
+                                            <button mat-button (click)="downloadTemplate('genotype')" class="mat-raised col-xs-11"><span class="glyphicon glyphicon-download-alt"></span> VCF Rules</button>
+                                            <button mat-button (click)="downloadTemplate('custommarkersetinstructions')" class="mat-raised col-xs-11"><span class="glyphicon glyphicon-download-alt"></span> Custom Marker Set</button>
+    
+                                            <h1 class="md-title card-title-style">Templates</h1>
+                                            <button mat-button (click)="downloadTemplate('germplasm')" class="md-raised col-xs-11"><span class="glyphicon glyphicon-download-alt"></span> Germplasm</button>
+                                            <button mat-button (click)="downloadTemplate('phenotype')" class="md-raised col-xs-11"><span class="glyphicon glyphicon-download-alt"></span> Phenotype</button>
+                                            <button mat-button (click)="downloadTemplate('custommarkersettemplates')" class="md-raised col-xs-11"><span class="glyphicon glyphicon-download-alt"></span> Custom Marker Set</button>
+                                        </div>
+                                    </mat-card>
+                                </div>
+    
+                                <div class="upload" style="display:none;">
+                                    <input *ngIf="false" type="file" id="inputUpload" nv-file-select="" uploader="uploader" multiple /><br />
+                                </div>
+    
+                                <!--right part of page-->
+                                <!--buttons-->
+                                <!-- <div class="col-md-9" style="margin-bottom: 40px">
+                                    <mat-card class="mat-theme-watch">
+                                        <mat-card-actions layout="row" layout-align="center">
+    
+                                            <button class="btn btn-primary green-button" disabled="disableUpload(1) || IsDataSetLoading" (click)="openFileSelector(1,'Germplasm')" file-upload-selector>
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                                Germplasms
+                                            </button>&nbsp;&nbsp;
+    
+                                            <button class="btn btn-primary green-button" disabled="disableUpload(3) || IsDataSetLoading" (click)="openFileSelector(3,'Genotype')" file-upload-selector>
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                                Genotypes
+                                            </button>&nbsp;&nbsp;
+    
+                                            <button class="btn btn-primary green-button" disabled="disableUpload(2) || IsDataSetLoading" (click)="openFileSelector(2,'Phenotype')" file-upload-selector>
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                                Phenotypes
+                                            </button>&nbsp;&nbsp;
+    
+                                            <button class="btn btn-primary green-button" disabled="disableUpload(4) || IsDataSetLoading" (click)="openFileSelector(4,'CustomMarker')" *ngIf="$root.FeatureFlags.CustomMarker.IsEnabled==true" file-upload-selector>
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                                Custom Markers
+                                            </button>&nbsp;&nbsp;
+    
+                                            <button class="btn btn-primary green-button" disabled="disableUpload(1) || IsFileImporting && IsDataSetLoading" *ngIf="isFileImportAvailable && $root.FeatureFlags.FileImport.IsEnabled==true" (click)="importFile()">
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                                Import Files
+                                            </button>&nbsp;&nbsp;
+    
+                                        </mat-card-actions>
+                                    </mat-card>
+    
+    
+                                    <!-- current file upload section-->
+                                    <!-- <mat-card class="md-theme-watch">
+                                        <mat-card-title>
+                                            <!-- <md-card-title-text> -->
+                                                <!-- <span class="md-headline head-color">Progress</span> -->
+                                            <!-- </md-card-title-text> -->
+    
+                                        <!-- </mat-card-title>
+                                        <table id="uploadProgressTable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th id="nameTableHeader">Name</th>
+                                                    <th id="fileTypeTableHeader">File Type</th>
+                                                    <th class="uploadProgressTableHeader" *ngIf="uploader.isHTML5">Size</th>
+                                                    <th class="uploadProgressTableHeader" *ngIf="uploader.isHTML5">Progress</th>
+                                                    <th class="uploadProgressTableHeader">Status</th>
+                                                    <th id="actionTableHeader">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="row-shadow" ng-repeat="item in uploader.queue">
+                                                    <td><strong>{{ item.file.name }}</strong></td>
+    
+                                                    <td>
+                                                        {{item.file.fileTypeName}}
+                                                    </td> -->
+                                                    <!-- <td *ngIf="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td> -->
+                                                    <!-- <td *ngIf="uploader.isHTML5">
+                                                        <mat-progress-bar mat-mode="determinate" value="{{item.progress}}"></mat-progress-bar>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-warning-sign"></i></span>
+                                                        <mat-progress-spinner *ngIf="item.showSpinner" mat-diameter="30px"></mat-progress-spinner>
+                                                    </td>
+                                                    <td wrap>
+    
+                                                        <button mat-button class="mat-raised" (click)="item.cancel();cancelItemFromGrid(this.item);" disabled="!item.showSpinner||item.IsFileProcessing">
+                                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                        </button>
+                                                        <button mat-button class="md-raised " (click)="item.remove();removeItemFromGrid(this.item);" disabled="item.IsFileProcessing">
+                                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                                        </button>
+                                                        <div class="alert alert-danger" *ngIf="item.isError">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span>   {{item.errorMessage }}
+                                                            <button class="btn btn-link" *ngIf="item.processingComplete" (click)="downloadOnboardingFile(item.eventId)">View File</button>
+                                                        </div>
+                                                        <div class="alert alert-success" *ngIf="item.isSuccess">
+                                                            <span class="glyphicon glyphicon-ok"></span>   {{item.successMessage }}
+                                                            <button class="btn btn-link" *ngIf="item.processingComplete" (click)="downloadOnboardingFile(item.eventId)">View File</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+    
+                                        <div>
+                                            <div>
+                                                Queue progress:
+                                                <div class="progress" style="">
+                                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-card>
+    
+    
+                                    <!--completed uploads-->
+                                    <!-- <mat-card class="mat-theme-watch">
+                                        <mat-card-title> -->
+                                            <!-- <md-card-title-text> -->
+                                                <!-- <span class="mat-headline head-color">
+                                                    Completed
+                                                    <button class="btn btn-primary green-button gwas-button" *ngIf="isGWASButtonVisible && $root.FeatureFlags.GWASButton.IsEnabled==true" (click)="GWASButtonClicked()">Trigger GWAS</button>
+                                                </span> -->
+                                            <!-- </md-card-title-text> -->
+                                        <!-- </mat-card-title>
+    
+                                        <div>
+                                            <table id="completedUploadsTable" class="table table-bordered">
+                                                <thead style="background-color:#efefef !important;">
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th id="fileNameTableHeader">File Name</th>
+                                                        <th>DateTime</th>
+                                                        <th>Email</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngIf="project.CompletedUploads.length > 0" ng-repeat="upload in project.CompletedUploads">
+                                                        <td>{{upload.FileType}}</td>
+                                                        <td> -->
+                                                            <!-- <span> -->
+                                                                <!-- <button (click)="downloadOnboardingFile(upload.EventId)" class="btndownload">{{upload.FileName}}</button>
+                                                            </span> <br />
+                                                            <span *ngIf="upload.FileType == 'CustomMarker' ">
+                                                                Marker Set Name: {{upload.Name}}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            {{upload.CompletedDate | date:'short'}}
+                                                        </td>
+                                                        <td>{{upload.Email}} </td>
+                                                        <td ng-class="{'infoText':upload.IsComplete==false && upload.DataImportComplete==true,'errorText':upload.Failed==true,'successText':upload.IsComplete==true}">
+                                                            <span *ngIf="upload.IsComplete==true" class="glyphicon glyphicon-ok"></span>
+                                                            <span *ngIf="upload.IsComplete==false && upload.DataImportComplete==true" class="glyphicon glyphicon-info-sign"></span>
+                                                            <span *ngIf="upload.Failed==true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                                            <span>{{upload.Status}}</span>
+                                                            <div *ngIf="upload.Failed==true && $root.FeatureFlags.PipelineErrorReportingStep.IsEnabled==true && upload.Step">
+                                                                Step:
+                                                                <span>{{upload.Step}}</span>
+                                                                <div *ngIf="$root.FeatureFlags.PipelineErrorReportingException.IsEnabled==true && upload.Exception">
+                                                                    Exception:
+                                                                    <span>{{upload.Exception}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr> --> -->
+                                                    <!-- <tr *ngIf="project.CompletedUploads.length==0">
+                                                        <td colspan="3" style="text-align:center;">
+                                                            0 complete
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-dialog-content> -->
+     -->
+                <!-- <mat-dialog-actions layout="row">
+                    <span flex></span> -->
+                    <!-- <button mat-button class="md-primary back-to-dashboard" (click)="cancel()">
+                        Back To Dashboard
+                    </button>
+                </mat-dialog-actions>
+            </form>
+    </dialog>
+     --> --> --> -->
