@@ -4,6 +4,8 @@ import { MatCardModule, MatToolbarModule, MatButtonModule, MatProgressBarModule,
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     imports: [
@@ -16,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         MatDialogModule,
         BrowserAnimationsModule,
         MatProgressSpinnerModule,
+        NgbToastModule,
+        ToastrModule
     ],
     exports: [DatasetDialogTemplateComponent],
     declarations: [DatasetDialogTemplateComponent],

@@ -118,18 +118,16 @@
 
 <ng-template #content let-modal>
         <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title"></h4>
-          <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')"> -->
+          <h4 class="modal-title" id="modal-basic-title">Hii</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
-          <!-- </button> -->
+          </button>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-                <app-dataset-dialog></app-dataset-dialog>
-            </div>
+                    <app-dataset-dialog></app-dataset-dialog>
+            </div>   
           </form>
         </div>
       </ng-template>
-      
-      <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->

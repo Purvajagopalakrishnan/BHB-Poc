@@ -23,13 +23,13 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary green-button" (click)="cancelModal()">Cancel</button>
-                            <button type="button" class="btn btn-primary green-button" (click)="openFileDailog()">Ok</button>
+                            <button type="button" class="btn btn-primary green-button" (click)="openFileDialog()">Ok</button>
                         </div>
                     </div>
                 </div>
             </div>
     
-            <form ng-cloak id="datasetDialog">
+            <form id="datasetDialog">
     
                 <mat-toolbar>
                     <div class="mat-toolbar-tools">
@@ -41,7 +41,7 @@
                     </div>
                 </mat-toolbar>
     
-                <mat-dialog-content ng-cloak>
+                <mat-dialog-content>
                     <div class="mat-dialog-content">
                         <div class="container">
                             <div class="row">
@@ -53,8 +53,7 @@
                                         <!-- <md-card-title-text> -->
                                             <h1 class="mat-title card-title-style">Existing Datasets</h1>
                                         <!-- </md-card-title-text> -->
-                                        </mat-card>
-                                        <!-- <div>
+                                        <div>
                                             <select class="form-control col-xs-12" disabled="isUploading || IsDataSetLoading || IsFileImporting" change="getDataset()" [(ngModel)]="datasets.selected" options="x.Name for x in datasets"></select>
                                             <span *ngIf="IsDataSetLoading">Loading datasets...</span>
                                         </div>
@@ -74,7 +73,7 @@
                                     <mat-card class="mat-theme-watch">
     
                                         <!--download templates and instructions-->
-                                        <!-- <div>
+                                        <div>
                                             <h1 class="mat-title card-title-style">Instructions</h1>
                                             <button mat-button (click)="downloadTemplate('instructions')" class="mat-raised col-xs-11"><span class="glyphicon glyphicon-download-alt"></span> Instructions</button>
                                             <button mat-button (click)="downloadTemplate('genotype')" class="mat-raised col-xs-11"><span class="glyphicon glyphicon-download-alt"></span> VCF Rules</button>
@@ -94,7 +93,7 @@
     
                                 <!--right part of page-->
                                 <!--buttons-->
-                                <!-- <div class="col-md-9" style="margin-bottom: 40px">
+                                <div class="col-md-9" style="margin-bottom: 40px">
                                     <mat-card class="mat-theme-watch">
                                         <mat-card-actions layout="row" layout-align="center">
     
@@ -128,13 +127,13 @@
     
     
                                     <!-- current file upload section-->
-                                    <!-- <mat-card class="md-theme-watch">
+                                   <mat-card class="mat-theme-watch">
                                         <mat-card-title>
                                             <!-- <md-card-title-text> -->
-                                                <!-- <span class="md-headline head-color">Progress</span> -->
+                                                <span class="md-headline head-color">Progress</span>
                                             <!-- </md-card-title-text> -->
     
-                                        <!-- </mat-card-title>
+                                         </mat-card-title>
                                         <table id="uploadProgressTable" class="table">
                                             <thead>
                                                 <tr>
@@ -153,8 +152,8 @@
                                                     <td>
                                                         {{item.file.fileTypeName}}
                                                     </td> -->
-                                                    <!-- <td *ngIf="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td> -->
-                                                    <!-- <td *ngIf="uploader.isHTML5">
+                                                     <td *ngIf="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td> -->
+                                                     <td *ngIf="uploader.isHTML5">
                                                         <mat-progress-bar mat-mode="determinate" value="{{item.progress}}"></mat-progress-bar>
                                                     </td>
                                                     <td class="text-center">
@@ -196,15 +195,15 @@
     
     
                                     <!--completed uploads-->
-                                    <!-- <mat-card class="mat-theme-watch">
-                                        <mat-card-title> -->
-                                            <!-- <md-card-title-text> -->
-                                                <!-- <span class="mat-headline head-color">
+                                     <mat-card class="mat-theme-watch">
+                                        <mat-card-title>
+                                             <!-- <md-card-title-text> -->
+                                                <span class="mat-headline head-color">
                                                     Completed
                                                     <button class="btn btn-primary green-button gwas-button" *ngIf="isGWASButtonVisible && $root.FeatureFlags.GWASButton.IsEnabled==true" (click)="GWASButtonClicked()">Trigger GWAS</button>
-                                                </span> -->
+                                                </span>
                                             <!-- </md-card-title-text> -->
-                                        <!-- </mat-card-title>
+                                         </mat-card-title>
     
                                         <div>
                                             <table id="completedUploadsTable" class="table table-bordered">
@@ -220,9 +219,9 @@
                                                 <tbody>
                                                     <tr *ngIf="project.CompletedUploads.length > 0" ng-repeat="upload in project.CompletedUploads">
                                                         <td>{{upload.FileType}}</td>
-                                                        <td> -->
-                                                            <!-- <span> -->
-                                                                <!-- <button (click)="downloadOnboardingFile(upload.EventId)" class="btndownload">{{upload.FileName}}</button>
+                                                        <td>
+                                                            <span>
+                                                                <button (click)="downloadOnboardingFile(upload.EventId)" class="btndownload">{{upload.FileName}}</button>
                                                             </span> <br />
                                                             <span *ngIf="upload.FileType == 'CustomMarker' ">
                                                                 Marker Set Name: {{upload.Name}}
@@ -246,8 +245,8 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                    </tr> --> -->
-                                                    <!-- <tr *ngIf="project.CompletedUploads.length==0">
+                                                    </tr> 
+                                                     <tr *ngIf="project.CompletedUploads.length==0">
                                                         <td colspan="3" style="text-align:center;">
                                                             0 complete
                                                         </td>
@@ -260,14 +259,14 @@
                             </div>
                         </div>
                     </div>
-                </mat-dialog-content> -->
-     -->
-                <!-- <mat-dialog-actions layout="row">
-                    <span flex></span> -->
-                    <!-- <button mat-button class="md-primary back-to-dashboard" (click)="cancel()">
+                </mat-dialog-content>
+     
+                <mat-dialog-actions layout="row">
+                    <span flex></span> 
+                     <button mat-button class="md-primary back-to-dashboard" (click)="cancel()">
                         Back To Dashboard
                     </button>
                 </mat-dialog-actions>
             </form>
     </dialog>
-     --> --> --> -->
+     
