@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { DatasetDialogTemplateComponent } from './core/component/dataset-dialog/dataset-dialog-template.component';
+import { DatasetStatusComponent } from './core/component/dataset-status/dataset-status.component';
+
 
 const routes: Routes = [
   {
@@ -9,8 +11,12 @@ const routes: Routes = [
     component: HeaderComponent
   },
   {
-    path: 'dataset',
+    path: 'populatedataset',
     component: DatasetDialogTemplateComponent
+  },
+  {
+    path: 'datasetstatus',
+    component: DatasetStatusComponent
   }
 ];
 

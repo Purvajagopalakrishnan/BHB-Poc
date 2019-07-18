@@ -19,7 +19,12 @@ import { ToastrModule } from 'ngx-toastr';
         BrowserAnimationsModule,
         MatProgressSpinnerModule,
         NgbToastModule,
-        ToastrModule
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-left',
+            timeOut: 5000,
+            preventDuplicates: true,
+        }),
+        MatProgressBarModule
     ],
     exports: [DatasetDialogTemplateComponent],
     declarations: [DatasetDialogTemplateComponent],

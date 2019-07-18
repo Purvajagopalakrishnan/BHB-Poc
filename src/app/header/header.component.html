@@ -38,7 +38,7 @@
                                 <mat-divider></mat-divider>
                                 <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
                                     <div class="mat-media-lg" layout="column" layout-fill="">
-                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openModal(content)" type="button">
+                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openPopulateDataset()" type="button">
                                             <img class="card-img" style="width:200px;height:200px;margin-top: 3%;" src="../../assets/Images/flask.png">
                                         </button>
                                     </div>
@@ -53,7 +53,7 @@
                                 <mat-divider></mat-divider>
                                 <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
                                     <div class="mat-media-lg" layout="column" layout-fill="">
-                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openModal(content)" type="button">
+                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openPopulateDataset()" type="button">
                                                 <ul class="bullets-style" style="width:190px;height:156px;">
                                                     <li>Upload Phenotype Data</li>
                                                     <li>Upload Germplasm Data</li>
@@ -80,7 +80,7 @@
                                 <mat-divider></mat-divider>
                                 <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
                                     <div class="mat-media-lg" layout="column" layout-fill="">
-                                        <button mat-button class="mat-button mat-ink-ripple" type="button">
+                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openDatasetStatus()" type="button">
                                             <img class="card-img" style="width:200px;height:200px;margin-top: 3%;" src="../../assets/Images/calendar.png">
                                         </button>
                                     </div>
@@ -95,7 +95,7 @@
                                 <mat-divider></mat-divider>
                                 <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
                                     <div class="mat-media-lg" layout="column">
-                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openModal(content)" type="button">
+                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openDatasetStatus()" type="button">
                                             <div class="ng-scope">
                                                 <ul class="bullets-style" style="width:190px;height:145px;">
                                                     <li>View Dataset History</li>
@@ -116,7 +116,7 @@
     </div> 
 </ng-container>
 
-<ng-template #content let-modal>
+<!-- <ng-template #content let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Hii</h4>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -130,4 +130,4 @@
             </div>   
           </form>
         </div>
-      </ng-template>
+      </ng-template> -->
