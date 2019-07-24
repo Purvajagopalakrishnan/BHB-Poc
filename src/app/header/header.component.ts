@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from '../_services/modal.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
@@ -10,9 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  closeResult : string;
+  closeResult: string;
 
-  constructor(private modalService: NgbModal, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,10 +23,4 @@ export class HeaderComponent implements OnInit {
   openDatasetStatus() {
     this.router.navigate(['/datasetstatus']);
   }
-
-
-
-  // openModal(content) {
-  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
-  // }
 }

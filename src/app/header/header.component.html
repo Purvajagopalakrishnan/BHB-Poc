@@ -12,109 +12,113 @@
         <a href="/Account/Logout">Log off</a>
     </span>
 </nav>
-<!-- <ul class="backgrounds">
-    <li>
-        <span>stock_beanpods</span>
-    </li>
-    <li>
-        <span>stock-young-soybeans</span>
-    </li>
-</ul> -->
-<ng-container *ngIf="!needToPickPartner" class="mat-padding" style="margin-top: 50px; background-color: transparent; height: 700px;"
-    flex>
-    <div class="outdatedBrowser" style align="center">
-        <h4>
-            You are using an outdated browser. Please update to a modern browser for better experience.
-        </h4>
-    </div>
-    <div class="grid">
-        <div layout="column" class="layout-column populate-dataset-menu">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <mat-card class="nice-card-border">
-                            <mat-card-title>
-                                <h1 class="mat-title card-title-style">POPULATE DATASET</h1>
-                                <mat-divider></mat-divider>
-                                <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
-                                    <div class="mat-media-lg" layout="column" layout-fill="">
-                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openPopulateDataset()" type="button">
-                                            <img class="card-img" style="width:200px;height:200px;margin-top: 3%;" src="../../assets/Images/flask.png">
-                                        </button>
-                                    </div>
-                                </mat-card-content>
-                            </mat-card-title>
-                        </mat-card>
-                    </div>
-                    <div class="flip-card-back">
-                        <mat-card class="nice-card-border">
-                            <mat-card-title>
-                                <h1 class="mat-title card-title-style">POPULATE DATASET</h1>
-                                <mat-divider></mat-divider>
-                                <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
-                                    <div class="mat-media-lg" layout="column" layout-fill="">
-                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openPopulateDataset()" type="button">
+
+<body>
+    <ng-container *ngIf="!needToPickPartner" class="mat-padding" style="margin-top: 50px; background-color: transparent; height: 700px;"
+        flex>
+        <div class="outdatedBrowser" style align="center">
+            <h4>
+                You are using an outdated browser. Please update to a modern browser for better experience.
+            </h4>
+        </div>
+        <div class="grid">
+            <div layout="column" class="layout-column populate-dataset-menu">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <mat-card class="nice-card-border">
+                                <mat-card-title>
+                                    <h1 class="mat-title card-title-style">POPULATE DATASET</h1>
+                                    <mat-divider></mat-divider>
+                                    <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
+                                        <div class="mat-media-lg" layout="column" layout-fill="">
+                                            <button mat-button class="mat-button mat-ink-ripple" (click)="openPopulateDataset()"
+                                                type="button">
+                                                <img class="card-img" style="width:200px;height:200px;margin-top: 3%;"
+                                                    src="../../assets/Images/flask.png">
+                                            </button>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card-title>
+                            </mat-card>
+                        </div>
+                        <div class="flip-card-back">
+                            <mat-card class="nice-card-border">
+                                <mat-card-title>
+                                    <h1 class="mat-title card-title-style">POPULATE DATASET</h1>
+                                    <mat-divider></mat-divider>
+                                    <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
+                                        <div class="mat-media-lg" layout="column" layout-fill="">
+                                            <button mat-button class="mat-button mat-ink-ripple" (click)="openPopulateDataset()"
+                                                type="button">
                                                 <ul class="bullets-style" style="width:190px;height:156px;">
                                                     <li>Upload Phenotype Data</li>
                                                     <li>Upload Germplasm Data</li>
                                                     <li>Upload Genomic Data</li>
                                                     <li>Upload Custom Marker Sets</li>
                                                 </ul>
-                                                <img class="card-img-block" src="../../assets/Images/right-button.png" height="40px" width="40px">
-                                        </button>
-                                    </div>
-                                </mat-card-content>
-                            </mat-card-title>
-                        </mat-card>
+                                                <img class="card-img-block" src="../../assets/Images/right-button.png"
+                                                    height="40px" width="40px">
+                                            </button>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card-title>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div layout="column" class="layout-column dataset-status-menu">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <mat-card class="nice-card-border">
+                                <mat-card-title>
+                                    <h1 class="mat-title card-title-style">DATASET STATUS</h1>
+                                    <mat-divider></mat-divider>
+                                    <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
+                                        <div class="mat-media-lg" layout="column" layout-fill="">
+                                            <button mat-button class="mat-button mat-ink-ripple" (click)="openDatasetStatus()"
+                                                type="button">
+                                                <img class="card-img" style="width:200px;height:200px;margin-top: 3%;"
+                                                    src="../../assets/Images/calendar.png">
+                                            </button>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card-title>
+                            </mat-card>
+                        </div>
+                        <div class="flip-card-back">
+                            <mat-card class="nice-card-border">
+                                <mat-card-title>
+                                    <h1 class="mat-title card-title-style">DATASET STATUS</h1>
+                                    <mat-divider></mat-divider>
+                                    <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
+                                        <div class="mat-media-lg" layout="column">
+                                            <button mat-button class="mat-button mat-ink-ripple" (click)="openDatasetStatus()"
+                                                type="button">
+                                                <div class="ng-scope">
+                                                    <ul class="bullets-style" style="width:190px;height:145px;">
+                                                        <li>View Dataset History</li>
+                                                        <li>Check Upload Status</li>
+                                                        <li>Check Pipeline Status</li>
+                                                    </ul>
+                                                    <img class="card-img-block" src="../../assets/Images/right-button.png"
+                                                        height="40px" width="40px">
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card-title>
+                            </mat-card>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div layout="column" class="layout-column dataset-status-menu">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <mat-card class="nice-card-border">
-                            <mat-card-title>
-                                <h1 class="mat-title card-title-style">DATASET STATUS</h1>
-                                <mat-divider></mat-divider>
-                                <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
-                                    <div class="mat-media-lg" layout="column" layout-fill="">
-                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openDatasetStatus()" type="button">
-                                            <img class="card-img" style="width:200px;height:200px;margin-top: 3%;" src="../../assets/Images/calendar.png">
-                                        </button>
-                                    </div>
-                                </mat-card-content>
-                            </mat-card-title>
-                        </mat-card>
-                    </div>
-                    <div class="flip-card-back">
-                        <mat-card class="nice-card-border">
-                            <mat-card-title>
-                                <h1 class="mat-title card-title-style">DATASET STATUS</h1>
-                                <mat-divider></mat-divider>
-                                <mat-card-content layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
-                                    <div class="mat-media-lg" layout="column">
-                                        <button mat-button class="mat-button mat-ink-ripple" (click)="openDatasetStatus()" type="button">
-                                            <div class="ng-scope">
-                                                <ul class="bullets-style" style="width:190px;height:145px;">
-                                                    <li>View Dataset History</li>
-                                                    <li>Check Upload Status</li>
-                                                    <li>Check Pipeline Status</li>
-                                                </ul>
-                                                <img class="card-img-block" src="../../assets/Images/right-button.png" height="40px" width="40px">
-                                            </div>
-                                        </button>
-                                    </div>
-                                </mat-card-content>
-                            </mat-card-title>
-                        </mat-card>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> 
-</ng-container>
+    </ng-container>
+</body>
+
 
 <!-- <ng-template #content let-modal>
         <div class="modal-header">

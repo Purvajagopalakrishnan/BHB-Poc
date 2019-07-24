@@ -1,5 +1,5 @@
 <style>
-        .my-drop-zone {
+    .my-drop-zone {
             border: dotted 3px lightgray;
         }
     
@@ -7,269 +7,170 @@
         html, body {
             height: 100%;
         }
-    </style>
-    
-    
-    <!-- <dialog mat-dialog aria-label="Upload A File">
-    
-            <a href="" data-toggle="modal" data-backdrop="false" data-target="#nameSelection" id="customMarkerSetName"></a>
-            <div class="modal fade" id="nameSelection">
-                <div class="modal-dialog" role="document" data-backdrop="static">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="mat-title card-title-style">Enter Custom Marker Name</h1>
-                        </div>
-                        <div class="modal-body">
-                            <label class="col-lg-2 control-label">Name* :</label>
-                            <input type="text" id="customMarkerFileName" class="form-control" [(ngModel)]="customMarkerFileName" />
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary green-button" (click)="cancelModal()">Cancel</button>
-                            <button type="button" class="btn btn-primary green-button" (click)="openFileDialog()">Ok</button>
-                        </div>
+</style>
+<mat-toolbar>
+    <div class="mat-toolbar-tools">
+        <h2>{{onBoardingTitle}}</h2>
+    </div>
+</mat-toolbar>
+
+<mat-dialog-content>
+    <div class="mat-dialog-content">
+        <div class="container">
+            <div class="row">
+                <div class="grid-left">
+
+                    <!--left part of page-->
+                    <!-- select dataset-->
+                    <div style="width: 75%; margin-left: 5%; margin-top: 5%">
+                        <mat-card class="mat-theme-watch" style="">
+                            <h1 class="mat-title card-title-style">Existing Datasets</h1>
+                            <div>
+                                <select class="form-control" *ngIf="viewDatasets" [value]='requiredName.name' (change)="onChange($event)">
+                                    <option disabled>-- Select --</option>
+                                    <option *ngFor="let dataset of datasets" value={{dataset.name}}>{{dataset.name}}</option>
+                                </select>
+                            </div>
+                        </mat-card>
+                        <mat-card class="mat-theme-watch" style="margin-top: 2%">
+                            <div class="row" align="left">
+                                <button class="btn btn-primary mat-raised small-green-button" [disabled]="isUploading"
+                                    (click)="create()">
+                                    Create
+                                </button> &nbsp; &nbsp;
+                                <button class="btn btn-primary mat-raised  small-green-button" [disabled]="!buttonDisabled">
+                                    Rename
+                                </button>
+                            </div>
+                        </mat-card>
+                        <mat-card class="mat-theme-watch" style="margin-top: 2%">
+
+                            <!--download templates and instructions-->
+                            <div>
+                                <h1 class="mat-title card-title-style">Instructions</h1>
+                                <a href="../../../../assets/Images/download-files/image1.jpg" class="download-button"
+                                    download><i class="fa fa-download"></i>Instructions</a>
+                                <a href="../../../../assets/Images/download-files/image1.jpg" class="download-button"
+                                    style="margin-top: 2%" download><i class="fa fa-download"></i> VCF Rules</a>
+                                <a href="../../../../assets/Images/download-files/image1.jpg" class="download-button"
+                                    style="margin-top: 2%" download><i class="fa fa-download"></i> Custom Marker Set</a>
+
+                                <h1 class="mat-title card-title-style">Templates</h1>
+                                <a href="../../../../assets/Images/download-files/image1.jpg" class="download-button"
+                                    download><i class="fa fa-download"></i>Germplasm</a>&nbsp;&nbsp;
+                                <a href="../../../../assets/Images/download-files/image1.jpg" class="download-button"
+                                    style="margin-top: 2%" download><i class="fa fa-download"></i> Phenotype</a>&nbsp;&nbsp;
+                                <a href="../../../../assets/Images/download-files/image1.jpg" class="download-button"
+                                    style="margin-top: 2%" download><i class="fa fa-download"></i>Custom Marker Set</a>
+                            </div>
+                        </mat-card>
+                    </div>
+
+                    <div class="upload" style="display:none;">
+                        <input *ngIf="false" type="file" id="inputUpload" uploader="uploader" multiple /><br />
+                    </div>
+                </div>
+                <div class="grid-right">
+
+                    <!--right part of page-->
+                    <!--buttons-->
+                    <div style="margin-bottom: 40px; margin-right: 2%">
+                        <mat-card class="mat-theme-watch" style="margin-top: 2%">
+                            <mat-card-actions layout="row" layout-align="center">
+
+                                <button class="btn btn-primary green-button" [disabled]="!buttonDisabled" (click)="openFileSelector(1,'Germplasm')"
+                                    file-upload-selector>
+                                    <span class="fa fa-file-upload"></span>
+                                    Germplasms
+                                </button>&nbsp;&nbsp;
+
+                                <button class="btn btn-primary green-button" [disabled]="!buttonDisabled" (click)="openFileSelector(3,'Genotype')"
+                                    file-upload-selector>
+                                    <span class="fa fa-file-upload"></span>
+                                    Genotypes
+                                </button>&nbsp;&nbsp;
+
+                                <button class="btn btn-primary green-button" [disabled]="!buttonDisabled" (click)="openFileSelector(2,'Phenotype')"
+                                    file-upload-selector>
+                                    <span class="fa fa-file-upload"></span>
+                                    Phenotypes
+                                </button>&nbsp;&nbsp;
+
+                                <button class="btn btn-primary green-button" [disabled]="!buttonDisabled" (click)="openFileSelector(4,'CustomMarker')"
+                                    file-upload-selector>
+                                    <span class="fa fa-file-upload"></span>
+                                    Custom Markers
+                                </button>&nbsp;&nbsp;
+
+                                <button class="btn btn-primary green-button" [disabled]="!buttonDisabled" (click)="importFile()">
+                                    <span class="fa fa-file-upload"></span>
+                                    Import Files
+                                </button>&nbsp;&nbsp;
+                            </mat-card-actions>
+                        </mat-card>
+
+
+                        <!-- current file upload section-->
+                        <mat-card class="mat-theme-watch" style="margin-top:5%">
+                            <mat-card-title>
+                                <span class="mat-headline head-color">Progress</span>
+                            </mat-card-title>
+                            <table id="uploadProgressTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th id="nameTableHeader">Name</th>
+                                        <th id="fileTypeTableHeader">File Type</th>
+                                        <th class="uploadProgressTableHeader">Size</th>
+                                        <th class="uploadProgressTableHeader">Progress</th>
+                                        <th class="uploadProgressTableHeader">Status</th>
+                                        <th id="actionTableHeader">Actions</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+                            <div>
+                                <div>
+                                    Queue progress:
+                                    <div class="progress">
+                                        <mat-progress-bar class="progress-bar" role="progressbar"></mat-progress-bar>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-card>
+
+
+                        <!--completed uploads-->
+                        <mat-card class="mat-theme-watch" style="margin-top:3%">
+                            <mat-card-title>
+                                <span class="mat-headline head-color">
+                                    Completed
+                                </span>
+                            </mat-card-title>
+
+                            <div>
+                                <table id="completedUploadsTable" class="table table-bordered">
+                                    <thead style="background-color:#efefef !important;">
+                                        <tr>
+                                            <th>Type</th>
+                                            <th id="fileNameTableHeader">File Name</th>
+                                            <th>DateTime</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </mat-card>
                     </div>
                 </div>
             </div>
-     -->
-            <form id="datasetDialog">
-    
-                <mat-toolbar>
-                    <div class="mat-toolbar-tools">
-                        <h2>{{onBoardingTitle}}</h2>
-                        <span flex></span>
-                        <button mat-button class="mat-icon-button" (click)="closeModal()">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                    </div>
-                </mat-toolbar>
-    
-                <mat-dialog-content>
-                    <div class="mat-dialog-content">
-                        <div class="container">
-                            <div class="row">
-    
-                                <!--left part of page-->
-                                <!-- select dataset-->
-                                <div class="col-3">
-                                    <mat-card class="mat-theme-watch">
-                                        <!-- <md-card-title-text> -->
-                                            <h1 class="mat-title card-title-style">Existing Datasets</h1>
-                                        <!-- </md-card-title-text> -->
-                                        <div>
-                                            <select class="form-control"  (change)="onChange($event)">
-                                                <option id="1">AutoGermDatasets</option>
-                                                <option id="2">Rice Test</option>
-                                                <option id="3">oryza test</option>
-                                            </select>
-                                            <span *ngIf="IsDataSetLoading">Loading datasets...</span>
-                                        </div>
-                                    </mat-card>
-                                    <mat-card class="mat-theme-watch">
-                                        <div class="row" align="left">
-                                            <button class="btn btn-primary mat-raised small-green-button" [disabled]="isUploading">
-                                                Create
-                                            </button> &nbsp; &nbsp;
-                                            <button class="btn btn-primary mat-raised  small-green-button" >
-                                                Rename
-                                            </button>
-                                        </div>
-                                    </mat-card>
-                                    <mat-card class="mat-theme-watch">
-    
-                                        <!--download templates and instructions-->
-                                        <div>
-                                            <h1 class="mat-title card-title-style">Instructions</h1>
-                                            <button mat-button (click)="downloadTemplate('instructions')" class="mat-raised col-xs-11"> Instructions</button>
-                                            <button mat-button (click)="downloadTemplate('genotype')" class="mat-raised col-xs-11"> VCF Rules</button>
-                                            <button mat-button (click)="downloadTemplate('custommarkersetinstructions')" class="mat-raised col-xs-11"> Custom Marker Set</button>
-    
-                                            <h1 class="mat-title card-title-style">Templates</h1>
-                                            <button mat-button (click)="downloadTemplate('germplasm')" class="mat-raised col-xs-11">Germplasm</button>
-                                            <button mat-button (click)="downloadTemplate('phenotype')" class="mat-raised col-xs-11"> Phenotype</button>
-                                            <button mat-button (click)="downloadTemplate('custommarkersettemplates')" class="mat-raised col-xs-11">Custom Marker Set</button>
-                                        </div>
-                                    </mat-card>
-                                </div>
-    
-                                <div class="upload" style="display:none;">
-                                    <input *ngIf="false" type="file" id="inputUpload" uploader="uploader" multiple /><br />
-                                </div>
-    
-                                <!--right part of page-->
-                                <!--buttons-->
-                                <div class="col-md-9" style="margin-bottom: 40px">
-                                    <mat-card class="mat-theme-watch">
-                                        <mat-card-actions layout="row" layout-align="center">
-    
-                                            <button class="btn btn-primary green-button" [disabled]="!buttonDisabled"  (click)="openFileSelector(1,'Germplasm')" file-upload-selector>
-                                                <span class="fa fa-file-upload"></span>
-                                                Germplasms
-                                            </button>&nbsp;&nbsp;
-    
-                                            <button class="btn btn-primary green-button" [disabled] = "!buttonDisabled"  (click)="openFileSelector(3,'Genotype')" file-upload-selector>
-                                                <span class="fa fa-file-upload"></span>
-                                                Genotypes
-                                            </button>&nbsp;&nbsp;
-    
-                                            <button class="btn btn-primary green-button" [disabled]="!buttonDisabled"  (click)="openFileSelector(2,'Phenotype')" file-upload-selector>
-                                                <span class="fa fa-file-upload"></span>
-                                                Phenotypes
-                                            </button>&nbsp;&nbsp;
-    
-                                            <button class="btn btn-primary green-button"  [disabled]="!buttonDisabled" (click)="openFileSelector(4,'CustomMarker')"  file-upload-selector>
-                                                <span class="fa fa-file-upload"></span>
-                                                Custom Markers
-                                            </button>&nbsp;&nbsp;
-    
-                                            <button class="btn btn-primary green-button" [disabled]="!buttonDisabled"   (click)="importFile()">
-                                                <span class="fa fa-file-upload"></span>
-                                                Import Files
-                                            </button>&nbsp;&nbsp;
-    
-                                        </mat-card-actions>
-                                    </mat-card>
-    
-    
-                                    <!-- current file upload section-->
-                                   <mat-card class="mat-theme-watch">
-                                        <mat-card-title>
-                                            <!-- <md-card-title-text> -->
-                                                <span class="mat-headline head-color">Progress</span>
-                                            <!-- </md-card-title-text> -->
-    
-                                         </mat-card-title>
-                                        <table id="uploadProgressTable" class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th id="nameTableHeader">Name</th>
-                                                    <th id="fileTypeTableHeader">File Type</th>
-                                                    <th class="uploadProgressTableHeader" >Size</th>
-                                                    <th class="uploadProgressTableHeader">Progress</th>
-                                                    <th class="uploadProgressTableHeader">Status</th>
-                                                    <th id="actionTableHeader">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="row-shadow" >
-                                                    <td><strong></strong></td>
-    
-                                                    <td>
-                                                       
-                                                    </td>
-                                                     <td  nowrap></td> 
-                                                     <td>
-                                                        <!-- <mat-progress-bar mat-mode="determinate" ></mat-progress-bar> -->
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span><i class="glyphicon glyphicon-ok"></i></span>
-                                                        <!-- <i class="fa fa-ban"></i>
-                                                        <i class="fa fa-exclamation-triangle"></i> -->
-                                                        <mat-progress-spinner mat-diameter="30px"></mat-progress-spinner>
-                                                    </td>
-                                                    <td wrap>
-    
-                                                        <!-- <button mat-button class="mat-raised" (click)="item.cancel();cancelItemFromGrid(this.item);" >
-                                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                                                        </button>
-                                                        <button mat-button class="mat-raised " (click)="item.remove();removeItemFromGrid(this.item);" >
-                                                            <span class="glyphicon glyphicon-trash"></span> Remove
-                                                        </button> -->
-                                                        <!-- <div class="alert alert-danger" >
-                                                            <span class="glyphicon glyphicon-warning-sign"></span>  
-                                                            <button class="btn btn-link"  (click)="downloadOnboardingFile(item.eventId)">View File</button>
-                                                        </div>
-                                                        <div class="alert alert-success" >
-                                                            <span class="glyphicon glyphicon-ok"></span>   
-                                                            <button class="btn btn-link"  (click)="downloadOnboardingFile(item.eventId)">View File</button>
-                                                        </div> -->
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-    
-                                        <div>
-                                            <div>
-                                                Queue progress:
-                                                <div class="progress">
-                                                    <mat-progress-bar class="progress-bar" role="progressbar" ></mat-progress-bar>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </mat-card>
-    
-    
-                                    <!--completed uploads-->
-                                     <mat-card class="mat-theme-watch">
-                                        <mat-card-title>
-                                                <span class="mat-headline head-color">
-                                                    Completed
-                                                    <!-- <button class="btn btn-primary green-button gwas-button"  (click)="GWASButtonClicked()">Trigger GWAS</button> -->
-                                                </span>
-                                         </mat-card-title>
-    
-                                        <div>
-                                            <table id="completedUploadsTable" class="table table-bordered">
-                                                <thead style="background-color:#efefef !important;">
-                                                    <tr>
-                                                        <th>Type</th>
-                                                        <th id="fileNameTableHeader">File Name</th>
-                                                        <th>DateTime</th>
-                                                        <th>Email</th>
-                                                        <th>Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr > 
-                                                        <ng-container >
-                                                        <td></td>
-                                                        <td>
-                                                            <!-- <span>
-                                                                <button (click)="downloadOnboardingFile(upload.EventId)" class="btndownload"></button>
-                                                            </span> <br />
-                                                            <span >
-                                                                Marker Set Name: 
-                                                            </span> -->
-                                                        </td>
-                                                        <td>
-                                                            
-                                                        </td>
-                                                        <td> </td>
-                                                        <td >
-                                                            <!-- <span  class="glyphicon glyphicon-ok"></span>
-                                                            <span  class="fa fa-info"></span>
-                                                            <span  class="fa fa-exclamation"></span> -->
-                                                            <span></span>
-                                                            <!-- <div >
-                                                                Step:
-                                                                <span></span>
-                                                                <div >
-                                                                    Exception:
-                                                                    <span></span>
-                                                                </div>
-                                                            </div> -->
-                                                        </td>
-                                                      </ng-container>
-                                                    </tr> 
-                                                     <!-- <tr >
-                                                        <td colspan="3" style="text-align:center;">
-                                                            0 complete
-                                                        </td>
-                                                    </tr> -->
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </mat-card>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </mat-dialog-content>
-     
-                <mat-dialog-actions layout="row">
-                     <button mat-button class="mat-primary back-to-dashboard" (click)="backToDashboard()">
-                        Back To Dashboard
-                    </button>
-                </mat-dialog-actions>
-            </form>
-    
-     
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions layout="row">
+    <button mat-button class="mat-primary back-to-dashboard" (click)="backToDashboard()">
+        Back To Dashboard
+    </button>
+</mat-dialog-actions>

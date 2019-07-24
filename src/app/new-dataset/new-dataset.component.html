@@ -1,1 +1,39 @@
-<p>new-dataset works!</p>
+
+<mat-toolbar>
+        <div class="mat-toolbar-tools">
+            <h2 class="title">{{onboardingTitle}}</h2>
+        </div>
+    </mat-toolbar>
+
+<form [formGroup]="createNewDatasetForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="form-group">
+            <label for="name">Name: </label>
+        </div>
+        <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && newDatasetform.name.errors }" /><br>
+        <div *ngIf="submitted && newDatasetform.date.errors" class="invalid-feedback">
+            <div class="validator" *ngIf="newDatasetform.name.errors.required"> Name is required </div>
+        </div>
+        <div class="form-group">
+            <label for="species_name">Species</label>
+        </div>
+        <select name="species_name" formControlName="species_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && newDatasetform.species_name.errors }">
+            <option></option>
+        </select>
+        <div *ngIf="submitted && newDatasetform.species_name.errors">
+            <div class="validator" *ngIf="newDatasetform.species_name.errors.required"> Species name is required
+        </div>
+        </div>
+        <select name="reference_genome" formControlName="reference_genome" class="form-control" [ngClass]="{ 'is-invalid': submitted && newDatasetform.species_name.errors }">
+            <option></option>
+        </select>
+        <div *ngIf="submitted && newDatasetform.reference_genome.errors">
+            <div class="validator" *ngIf="newDatasetform.reference_genome.errors.required"> Reference genome is
+                required </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-primary green-button" [disabled]="newDatasetform.invalid">Save</button>
+            <button type="submit" class="btn btn-primary green-button">Cancel</button>
+        </div>
+    </div>
+</form>

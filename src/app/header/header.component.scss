@@ -209,35 +209,15 @@ mat-divider {
     text-align: left;
 }
 
-// .backgrounds {
-//     position: fixed;
-//     width: 100%;
-//     height: 100%;
-//     top: 60px;
-//     left:0;
-//     z-index: 0;
-// }
-
-// .backgrounds li span {
-//     width: 100%;
-//     height: 100%;
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     color: transparent;
-//     background-size: cover;
-//     background-position: 50% 50%;
-//     background-repeat: no-repeat;
-//     opacity: 0;
-//     z-index: 0;
-//     animation: imageAnimation 100s linear infinite 0s;
-// }
-
-// .backgrounds li:nth-child(1) span {
-//     background-image: url(../../assets/Images/backgrounds/stock_soybean-field.png);
-// }
-
-// .backgrounds li:nth-child(2) span {
-//     background-image: url(../../assets/Images/backgrounds/stock_tomato-basket.png);
-//     animation-delay: 90s;
-// }
+body {
+    background-image: url("../../assets/Images/backgrounds/stock_soybean-field.png");
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 60px;
+    left:0;
+    z-index: 0;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

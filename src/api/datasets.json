@@ -1,0 +1,43 @@
+[
+    {
+        "CompletedGermplasmUpload": false,
+        "CompletedUploads": null,
+        "CompletedUploadsString": "",
+        "CreatedTime": "/Date(1562061582740)/",
+        "Id": 912,
+        "Name": "11111",
+        "OwningPartnerId": 2,
+        "PrivateProperty": false,
+        "ReferenceGenomeId": 13,
+        "SpeciesId": 457,
+        "SpeciesName": "Cannabis ruderalis"
+    },
+    {
+        "CompletedGermplasmUpload": true,
+        "CompletedUploads": null,
+        "CompletedUploadsString": "Genomic, Germplasm",
+        "CreatedTime": "/Date(1550841082263)/",
+        "Id": 172,
+        "Name": "Au",
+        "OwningPartnerId": 2,
+        "PrivateProperty": true,
+        "ReferenceGenomeId": 1,
+        "SpeciesId": 39,
+        "SpeciesName": "Glycine max"
+    },
+    {
+        "CompletedGermplasmUpload": true,
+        "CompletedUploads": null,
+        "CompletedUploadsString": "Germplasm",
+        "CreatedTime": "/Date(1550841082780)/",
+        "Id": 173,
+        "Name": "AutoGermD",
+        "OwningPartnerId": 2,
+        "PrivateProperty": true,
+        "ReferenceGenomeId": 1,
+        "SpeciesId": 39,
+        "SpeciesName": "Glycine max"
+    }
+    
+]
+

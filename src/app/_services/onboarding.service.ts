@@ -1,16 +1,15 @@
 import { Injectable } from "@angular/core";
-import { of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class OnboardingService {
-    constructor() {}
+    
 
-    getReport() {
-
-    }
+    // renameDataset(datasets: IDatasets[]) {
+    //     return this.http.put(this.baseUrl + datasets.id, name);
+    // }
 
     // datasets: IDatasets[] = [
     //     {

@@ -1,6 +1,6 @@
 <mat-card flex flex-order="2" flex-order-gt-md="1" class="round-border">
     <mat-card-title class="card-title-height">
-            <h3 class="mat-headline card-title-style">{{inProgressTitle}}</h3>
+        <h3 class="mat-headline card-title-style">{{inProgressTitle}}</h3>
         <div class="pull-right" *ngIf="processing===true">
             <mat-progress-spinner class="md-hue-2" md-diameter="35px"></mat-progress-spinner>
         </div>
@@ -20,7 +20,7 @@
                             </a>
                         </th>
                         <th>
-                            <a class="column-title"  (click)="sortColumn('SpeciesName')">
+                            <a class="column-title" (click)="sortColumn('SpeciesName')">
                                 Species
                                 <span class="glyphicons glyphicons-chevron-down"></span>
                             </a>
@@ -40,7 +40,7 @@
                         <th>
                             <a class="column-title" (click)="sortColumn('Events')">
                                 Events
-                                <span  class="fa fa-chevron-down"></span>
+                                <span class="fa fa-chevron-down"></span>
                             </a>
                         </th>
 
@@ -48,29 +48,29 @@
 
                 </thead>
                 <tbody>
-                    <tr  ng-class-odd="'odd-row'" ng-class-even="'even-row'">
-                        <!-- <td><strong>{{item.Name}}</strong></td>
-                        <td><i>{{item.SpeciesName}}</i></td>
-                        <td>{{item.CompletedUploadsString}}</td> -->
+                    <tr *ngFor="let dataset of datasetList">
+                        <td><strong>{{dataset.name}}</strong></td>
+                        <td><i>{{dataset.species}}</i></td>
+                        <td>{{dataset.imports_completed}}</td>
                         <td>
-                            <button mat-button class="mat-raised">
-                                <span class="glyphicon glyphicon-upload"></span> Continue
+                            <button mat-button class="continue-button" (click)=onClickContinue(dataset)>
+                                <span class="glyphicon glyphicon-upload "></span> Continue
                             </button>
                         </td>
                         <td>
-                            <button mat-button class="mat-raised">
+                            <button mat-button class="view-button" (click)="showEvents()">
                                 <span class="glyphicon glyphicon-search"></span> View
-                            </button>>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="alert alert-info" >
-                <h4 ><span class="glyphicon glyphicon-info-sign"></span> There are no completed onboardings</h4>
-                <h4 ><span class="glyphicon glyphicon-info-sign"></span> There are no onboardings in process</h4>
-            </div>
+            <!-- <div class="alert alert-info"  >
+                <h4 *ngIf= "showCompletedOnboardings==true"><span class="glyphicon glyphicon-info-sign"></span> There are no completed onboardings</h4>
+                <h4 *ngIf= "showCompletedOnboardings != true"><span class="glyphicon glyphicon-info-sign"></span> There are no onboardings in process</h4>
+            </div> -->
         </div>
-        <div >
+        <div *ngIf="showOnboardingEvents == true">
             <div class="pull-right">
                 <button mat-button (click)="backToOnboardings()">
                     <span class="glyphicon glyphicon-chevron-left"></span> Back to Onboardings
@@ -82,95 +82,50 @@
                     <thead>
                         <tr>
                             <th id="onboardingFileNameTableHeader">
-                                <a class="column-title" (click)="sortColumn('FileName')">
+                                <a class="column-title" href="#" (click)="sortColumn('FileName')">
                                     File Name
                                     <span class="fa fa-chevron-down"></span>
                                 </a>
                             </th>
                             <th class="onboardingTableHeader">
-                                <a class="column-title" (click)="sortColumn('TotalErrors')">
+                                <a class="column-title" href="#" (click)="sortColumn('TotalErrors')">
                                     Errors
                                     <span class="fa fa-chevron-down"></span>
                                 </a>
                             </th>
                             <th class="onboardingTableHeader">
-                                <a class="column-title" (click)="sortColumn('TotalWarnings')">
+                                <a class="column-title" href="#" (click)="sortColumn('TotalWarnings')">
                                     Warnings
-                                    <span  class="fa fa-chevron-down"></span>
+                                    <span class="fa fa-chevron-down"></span>
                                 </a>
                             </th>
                             <th class="onboardingTableHeader">
-                                <a class="column-title" (click)="sortColumn('StartTime')">
+                                <a class="column-title" href="#" (click)="sortColumn('StartTime')">
                                     Start Time
                                     <span class="fa fa-chevron-down"></span>
                                 </a>
                             </th>
                             <th class="onboardingTableHeader">
-                                <a class="column-title" (click)="sortColumn('EndTime')">
+                                <a class="column-title" href="#" (click)="sortColumn('EndTime')">
                                     End Time
-                                    <span  class="fa fa-chevron-down"></span>
+                                    <span class="fa fa-chevron-down"></span>
                                 </a>
                             </th>
                             <th class="onboardingTableHeader">
-                                <a class="column-title" (click)="sortColumn('Status')">
+                                <a class="column-title" href="#" (click)="sortColumn('Status')">
                                     Status
                                     <span class="fa fa-chevron-down"></span>
                                 </a>
                             </th>
                             <th id="emailHeader">
-                                <a class="column-title" (click)="sortColumn('Email')">
+                                <a class="column-title" href="#" (click)="sortColumn('Email')">
                                     Email
-                                    <span  class="fa fa-chevron-down"></span>
+                                    <span class="fa fa-chevron-down"></span>
                                 </a>
                             </th>
                             <th class="onboardingTableHeader">View File</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>                            
-                            <td>
-                                <span>
-                                    <!-- {{item.FileName}} -->
-                                </span> <br/>
-                                <span>
-                                    <!-- Marker Set Name: {{item.CustomMarkerSetName}} -->
-                                </span>
-                            </td>
-                            <td>
-                                <!-- {{item.TotalErrors}} -->
-                            </td>
-                            <td>
-                                <!-- {{item.TotalWarnings}} -->
-                            </td>
-                            <td>
-                                <!-- {{item.StartTime | CustomDateFilter | date:'short'}} -->
-                            </td>
-                            <td>
-                                <!-- {{item.EndTime | CustomDateFilter | date:'short'}} -->
-                            </td>
-                            <td >
-                                <span class="glyphicon glyphicon-ok" Title="Onboarding Completed"></span>
-                                <span class="glyphicon glyphicon-info-sign" Title="Data Import Complete"></span>
-                                <span class="glyphicon glyphicon-exclamation-sign" Title="Onboarding Failed"></span>
-                                <!-- <span>{{item.Status}}</span> -->
-                                <div >
-                                    <br />
-                                    Step:
-                                    <!-- <span>{{item.Step}}</span> -->
-                                    <div >
-                                        Exception:
-                                        <!-- <span>{{item.Exception}}</span> -->
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <!-- {{item.Email}} -->
-                            </td>
-                            <td>
-                                <button class="btn btn-default" (click)="downloadOnboardingFile(item.Id)"><span class="glyphicon glyphicon-file"></span></button>
-                            </td>
-                        </tr>
-                    </tbody>
                 </table>
             </div>
         </div>

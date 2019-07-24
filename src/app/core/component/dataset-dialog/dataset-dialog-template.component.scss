@@ -5,7 +5,6 @@
 
 .small-green-button {
     border: 2px solid #2cb98b;
-    
     background-color: white;
     border-color: #2cb98b;
     height: 35px;
@@ -94,6 +93,39 @@ h2{
     color: #2cb98b !important;
 }
 
-.disabled {
-    cursor: not-allowed;
+.grid-left {
+    width: 25%;
+    float: left;
+}
+
+.grid-right {
+    width: 75%;
+    float: left;
+}
+
+.download-button:not([disabled]) {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.download-button {
+    color: rgb(33,33,33);
+    background-color: rgb(250,250,250);
+    cursor: pointer;
+    line-height: 36px;
+    text-align: center;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 20px;
+    display: inline-block;
+    width: 200px;
+    user-select: none;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: inherit;
+    margin-left: 5%;
+}
+a {
+    text-decoration: none;
 }
